@@ -14,7 +14,7 @@ python main.py -i path/to/image -o path/to/output -s num_step
 
 **Explanation**
 - -i = path to input image
-- -o = path to output folder, folder will be created if not exist.
+- -o = name of output folder, output folder will be created if not exist.
 - -s = number of images per each visualization in process, s must be 1,2,3 or 4
 
 **Example**

@@ -2,6 +2,7 @@
 ## Project1
 
 **Install requirements**
+We assume that you have *python* package in your system:
 ```
 cd project1
 pip install -r requirements.txt

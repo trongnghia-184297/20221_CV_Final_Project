@@ -86,6 +86,7 @@ class count_connected_comp:
 
         # Visualization
         rec_img = img.copy()
+        out_img = self.img_origin.copy()
         count=0
         # Loop through each component
         for i in range(1, totalLabels):
@@ -120,6 +121,10 @@ class count_connected_comp:
                 cv2.circle(rec_img, (int(X),
                                     int(Y)), 
                         4, (0, 0, 255), -1)
+                cv2.rectangle(out_img,pt1,pt2,
+                            (0, 255, 0), 3)
+                cv2.circle(out_img, (int(X),
+                                    int(Y)), 4, (0, 0, 255), -1)
         
                 # Create a new array to show individual component
                 component = np.zeros(gray_img.shape, dtype="uint8")
@@ -152,10 +157,10 @@ class count_connected_comp:
         fontColor  = (0,0,255)
         thickness  = 2
 
-        cv2.putText(rec_img,'Total', position_1, font, fontScale, fontColor, thickness)
-        cv2.putText(rec_img,str(count), position_2, font, fontScale, fontColor, thickness)
+        cv2.putText(out_img,'Total', position_1, font, fontScale, fontColor, thickness)
+        cv2.putText(out_img,str(count), position_2, font, fontScale, fontColor, thickness)
 
-        self.visualization_window(pos0, size0, rec_img, "Step5: Visualization final output")
+        self.visualization_window(pos0, size0, out_img, "Step5: Visualization final output")
         # cv2.imshow("Filtered Components", rec_img)
 
         cv2.waitKey(0)

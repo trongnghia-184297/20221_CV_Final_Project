@@ -5,6 +5,7 @@ class count_connected_comp:
     def __init__(self) -> None:
         self.img = None
         self.output = None
+        self.rec_img = None
     def Counting(self,img_source:str):
         # Loading the image
         # img = cv2.imread('project1/denoise/noise_periodic.png')
@@ -38,21 +39,32 @@ class count_connected_comp:
                                                     4,
                                                     cv2.CV_32S)
         (totalLabels, label_ids, values, centroid) = analysis
-        
+        print(len(values[0]))
+        print(label_ids)
         # Initialize a new image to store 
         # all the output components
         output = np.zeros(gray_img.shape, dtype="uint8") 
+
+        #avg area 
+        sum_area=0
+        for i in range(1, totalLabels):
+            # Area of the component
+            area = values[i, cv2.CC_STAT_AREA] 
+            sum_area += area
+        avg_area = float(sum_area/totalLabels)
+        rec_img = img.copy()
+        count=0
         # Loop through each component
         for i in range(1, totalLabels):
             
             # Area of the component
             area = values[i, cv2.CC_STAT_AREA] 
             
-            if True:
+            if area/avg_area > 0.18:
                 # componentMask = (label_ids == i).astype("uint8") * 255
                 # output = cv2.bitwise_or(output, componentMask)
                 new_img=img.copy()
-                
+                count +=1
                 # Now extract the coordinate points
                 x1 = values[i, cv2.CC_STAT_LEFT]
                 y1 = values[i, cv2.CC_STAT_TOP]
@@ -68,6 +80,11 @@ class count_connected_comp:
                 cv2.rectangle(new_img,pt1,pt2,
                             (0, 255, 0), 3)
                 cv2.circle(new_img, (int(X),
+                                    int(Y)), 
+                        4, (0, 0, 255), -1)
+                cv2.rectangle(rec_img,pt1,pt2,
+                            (0, 255, 0), 3)
+                cv2.circle(rec_img, (int(X),
                                     int(Y)), 
                         4, (0, 0, 255), -1)
         
@@ -86,13 +103,15 @@ class count_connected_comp:
                 # cv2.waitKey(0)
         
         self.output=output
-        return totalLabels
+        self.rec_img=rec_img
+        return count
   
-# count_connected_comp = Count_connected_comp()
-# count_connected_comp.Counting('project1/denoise/noise_pepper.png')
-# cv2.imshow("Image", count_connected_comp.img)
-# cv2.imshow("Filtered Components", count_connected_comp.output)
+count_connected_comp = count_connected_comp()
+res = count_connected_comp.Counting('project1/denoise/noise_periodic.png')
+cv2.imshow("Image", count_connected_comp.img)
+cv2.imshow("Filtered Components", count_connected_comp.output)
+cv2.imshow("Rec img", count_connected_comp.rec_img)
 # cv2.imshow("threshold",opening_img)
-# print(centroid)
-# cv2.waitKey(0)
+print(res)
+cv2.waitKey(0)
 # cv2.destroyAllWindows() 

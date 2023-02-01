@@ -70,8 +70,7 @@ class count_connected_comp:
                                                     4,
                                                     cv2.CV_32S)
         (totalLabels, label_ids, values, centroid) = analysis
-        # print(len(values[0]))
-        # print(label_ids)
+
         # Initialize a new image to store 
         # all the output components
         output = np.zeros(gray_img.shape, dtype="uint8") 

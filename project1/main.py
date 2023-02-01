@@ -1,7 +1,8 @@
 import os
 import argparse
 from module import counting
-from module import denoise, count_connected_comp
+from module import denoise
+from module import count_connected_comp
 
 # Argument
 parser = argparse.ArgumentParser()
@@ -52,7 +53,7 @@ if count_option=="contour":
     counting_operation.counting_object()
 elif count_option == "connected":
     count_method = count_connected_comp.count_connected_comp()
-    total_count = count_method.Counting(path_in_counting)
+    total_count = count_method.Counting(path_in_counting, path_in)
     print(f'Object counting using connected componets = {total_count}')
 
 

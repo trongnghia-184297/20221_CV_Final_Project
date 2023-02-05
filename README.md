@@ -22,6 +22,7 @@ python main.py -i path/to/image -o path/to/output -s num_step
 **Example**
 ```
 python main.py -i imgs/noise_pepper.png -o output -s 3 -c contour
+```
 
 
 ## Project2

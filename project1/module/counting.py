@@ -302,7 +302,7 @@ class Counting:
         cv2.destroyAllWindows()
 
         # Print number of object
-        print("The total number of objects is: " + str(num_objects)) 
+        print("Object counting using finding contour = " + str(num_objects)) 
 
         # Process visualization
         self.window_visualization(list_window, list_window_name, int(self.step))

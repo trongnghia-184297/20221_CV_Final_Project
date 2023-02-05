@@ -90,10 +90,10 @@ class Denoise:
         plt.imsave(path_out_png, img_back, cmap='gray')
         
 
-denoise_test = Denoise("imgs/noise_periodic.png")
-# denoise_test = Denoise("imgs/noise_pepper.png")
+# denoise_test = Denoise("imgs/noise_periodic.png")
+denoise_test = Denoise("project1/imgs/noise_pepper.png")
 # denoise_test = Denoise("imgs/noise_connected.png")
 # denoise_test = Denoise("imgs/normal.png")
-denoise_test.denoise()
+# denoise_test.denoise()
 
 

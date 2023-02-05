@@ -27,7 +27,7 @@ def main(args):
     kp1, des1 = detector.detectAndCompute(img1)
     kp2, des2 = detector.detectAndCompute(img2)
     matches = matcher.match(des1, des2)
-    if len(matches) < args.MIN_MATCH_COUNT1:
+    if len(matches) < int(args.MIN_MATCH_COUNT1):
         print("Not enough good matches are found - {}/{}".format(len(matches), args.MIN_MATCH_COUNT1))
         print("There is not the object in the image")
         sys.exit(1)
@@ -35,7 +35,7 @@ def main(args):
         M, matchesMask = transformMatch(kp1, kp2, matches)
         filterMatches = list(compress(matches, matchesMask))
         occur = len(set([i.trainIdx for i in filterMatches]))
-        if occur < args.MIN_MATCH_COUNT2:
+        if occur < int(args.MIN_MATCH_COUNT2):
             print("Not enough unique match points are found - {}/{}".format(occur, args.MIN_MATCH_COUNT2))
             print("There is not the object in the image")
             sys.exit(1)
@@ -46,7 +46,7 @@ def main(args):
             h_min = np.clip(h_min, 0, h - 1)
             w_max = np.clip(w_max, 0, w - 1)
             h_max = np.clip(h_max, 0, h - 1)
-            cv2.rectangle(img2, (w_min, h_min), (w_max, h_max), 255, 8)
+            cv2.rectangle(img2, (int(w_min), int(h_min)), (int(w_max), int(h_max)), (255,255,0), 8)
             draw_params = dict(matchColor=(0, 255, 0),  # draw matches in green color
                                singlePointColor=None,
                                matchesMask=matchesMask,  # draw only inliers

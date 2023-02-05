@@ -8,4 +8,5 @@ class BruteForce:
     def match(self, des1, des2):
         print("Matching...")
         matches = self.matcher.match(des1, des2)
+        print("Matches after cross check:{}".format(len(matches)))
         return matches

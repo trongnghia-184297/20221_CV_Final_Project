@@ -1,6 +1,8 @@
-from module.algorithm.SIFT import SIFT
-from module.algorithm.ASIFT import ASIFT
 import sys
+
+from module.algorithm.ASIFT import ASIFT
+from module.algorithm.SIFT import SIFT
+
 
 def get_algo(algo_name):
     # Available algorithm

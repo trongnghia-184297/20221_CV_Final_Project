@@ -1,6 +1,8 @@
+import sys
+
 from module.matcher.BruteForce import BruteForce
 from module.matcher.KDTree import KDTree
-import sys
+
 
 def get_matcher(matcher_name):
     # Available algorithm

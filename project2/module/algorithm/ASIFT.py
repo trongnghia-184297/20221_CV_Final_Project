@@ -65,7 +65,7 @@ class ASIFT(SIFT):
 
         keypoints, descrs = [], []
         if self.pool is None:
-            ires = it.imap(f, params)
+            ires = map(f, params)
         else:
             ires = self.pool.imap(f, params)
         for i, (k, d) in enumerate(ires):

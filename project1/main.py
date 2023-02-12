@@ -10,23 +10,25 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-i',
                     '--images',
                     help='Path to images folder',
-                    required=True)
+                    default = 'imgs/noise_pepper.png'
+                    )
 
 parser.add_argument('-o',
                     '--output',
                     help='Path to output folder',
-                    required=True)
+                    default = 'output'
+                    )
 
 parser.add_argument('-s',
                     '--step',
                     help='Step for visualization',
-                    default= 3
+                    default = 3
                     )
 
 parser.add_argument('-c',
                     '--count',
                     help='Counting opting',
-                    required=True
+                    default = 'contour',
                     )
 
 
